@@ -102,10 +102,14 @@ export default {
   font-weight: 500;
   font-size: 1.2rem;
   letter-spacing: 0.5rem;
+  text-align: center;
 }
 
 .navbar {
   background-color: $gray-100;
+  -webkit-box-shadow: 0 2px 2px $gray-200;
+  -moz-box-shadow: 0 2px 2px $gray-200;
+  box-shadow: 0 2px 2px $gray-200;
 }
 
 .nav-link {
