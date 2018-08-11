@@ -1,11 +1,13 @@
 <template lang="pug">
   #app
     navbar
-    router-view
+    keep-alive
+      transition(name="fade", mode="out-in")
+        router-view
 </template>
 
 <script>
-import Navbar from '@/components/views/Navbar.vue';
+import Navbar from '@/components/Navbar.vue';
 
 export default {
   name: 'app',

@@ -12,7 +12,10 @@
     "vue": "^2.5.16",
     "vue-i18n": "^8.0.0",
     "vue-ionicons": "^2.2.1",
+    "vue-masonry-css": "^1.0.2",
+    "vue-popperjs": "^1.5.0",
     "vue-router": "^3.0.1",
+    "vue-swatches": "^1.0.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

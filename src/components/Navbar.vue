@@ -1,21 +1,21 @@
 <template lang="pug">
-nav.navbar.navbar-expand-md
-  .navbar-collapse.collapse.w-100.order-1.order-md-0.dual-collapse2
-    ul.navbar-nav.mr-auto
-  .mx-auto.order-0
-    router-link.navbar-brand.mx-auto(to="/") KUDOWALL
-    button.navbar-toggler(type='button')
-      span.navbar-toggler-icon
-  .navbar-collapse.collapse.w-100.order-3.dual-collapse2
-    ul.navbar-nav.ml-auto
-      li.nav-item.mx-2.my-auto
-        router-link.nav-link(to="/new")
-          button.btn.btn-sm.btn-outline-primary(type='button')
-            add-circle-outline-icon(title="Add new kudos", w="25px", h="25px")
-            span {{ $t('New Kudo') }}
-      li.nav-item.mx-2.my-auto
-        a.nav-link(href='#', @click="toggleFullscreen")
-          component(:is="fullscreenIcon", :title="$t('Add new Kudo')", w="25px", h="25px")
+  nav.navbar.navbar-expand-md.navbar-dark.bg-primary
+    .navbar-collapse.collapse.w-100.order-1.order-md-0.dual-collapse2
+      ul.navbar-nav.mr-auto
+    .mx-auto.order-0
+      router-link.navbar-brand.mx-auto(to="/") KUDOWALL
+      button.navbar-toggler(type='button')
+        span.navbar-toggler-icon
+    .navbar-collapse.collapse.w-100.order-3.dual-collapse2
+      ul.navbar-nav.ml-auto
+        li.nav-item.mx-2.my-auto(v-if="!isFullscreen")
+          router-link.nav-link(to="/new")
+            button.btn.btn-sm.btn-outline-light(type='button')
+              add-circle-outline-icon(title="Add new kudos", w="25px", h="25px")
+              span {{ $t('New Kudo') }}
+        li.nav-item.mx-2.my-auto
+          a.nav-link(href='#', @click="toggleFullscreen")
+            component(:is="fullscreenIcon", :title="$t('Add new Kudo')", w="25px", h="25px")
 </template>
 
 <script>
@@ -57,7 +57,7 @@ function isFullscreen() {
 }
 
 export default {
-  name: 'navbar',
+  name: 'Navbar',
   data() {
     return {
       isFullscreen: false,
@@ -96,7 +96,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/bootstrap';
+@import '../assets/bootstrap';
 
 .navbar-brand {
   font-weight: 500;
@@ -106,10 +106,24 @@ export default {
 }
 
 .navbar {
-  background-color: $gray-100;
+  padding: 0.6rem;
   -webkit-box-shadow: 0 2px 2px $gray-200;
   -moz-box-shadow: 0 2px 2px $gray-200;
   box-shadow: 0 2px 2px $gray-200;
+
+  .ion, a {
+    color: white;
+    transition: color 0.15s ease-in-out;
+    &:hover {
+      color: $gray-800 !important;
+    }
+  }
+
+  .btn:hover {
+    .ion {
+      color: $gray-800;
+    }
+  }
 }
 
 .nav-link {

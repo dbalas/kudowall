@@ -42,6 +42,9 @@ $border-width: 1px;
 $border-radius: 0.25rem;
 $border-radius-lg: 0.3rem;
 $border-radius-sm: 0.2rem;
+$input-border-radius: 0.1rem;
+$input-border-radius-lg: 0.1rem;
+$input-border-radius-sm: 0.1rem;
 
 // Buttons
 $input-btn-padding-y: 0.4rem;
@@ -100,4 +103,19 @@ $enable-shadows: false;
     &:hover {
         color: darken($primary, 10%);
     }
+}
+
+.custom-control-label {
+    line-height: 1.4;
+}
+
+.btn:focus,
+.btn.focus,
+input,
+input:focus,
+textarea,
+textarea:focus {
+    outline: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
 }
