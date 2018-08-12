@@ -1,6 +1,6 @@
 <template lang="pug">
   masonry(
-    :cols="{default: 4, 1800: 5, 1000: 2, 800: 2, 500: 1}",
+    :cols="{default: 3, 1000: 2, 800: 2, 500: 1}",
     :gutter="{default: '20px'}"
   )
     transition(
@@ -9,13 +9,7 @@
       v-for="kudo in kudos",
       :key="kudo.id"
     )
-      kudo.card(
-        :id="kudo.id"
-        :title="kudo.title",
-        :content="kudo.content",
-        :image="kudo.image"
-        :icon="kudo.icon"
-        :styles="kudo.styles"
+      kudo.card(:kudo="kudo"
       )
 </template>
 
@@ -36,6 +30,7 @@ export default {
 
 .card {
   margin-top: 20px !important;
+  margin-bottom: 20px !important;
   border: none;
   border-radius: 2px;
   box-shadow: 1px 1px 5px #d8d8d8;

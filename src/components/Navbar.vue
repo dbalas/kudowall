@@ -1,12 +1,10 @@
 <template lang="pug">
   nav.navbar.navbar-expand-md.navbar-dark.bg-primary
-    .navbar-collapse.collapse.w-100.order-1.order-md-0.dual-collapse2
+    .navbar-collapse.collapse.w-100.order-1.order-md-0
       ul.navbar-nav.mr-auto
     .mx-auto.order-0
       router-link.navbar-brand.mx-auto(to="/") KUDOWALL
-      button.navbar-toggler(type='button')
-        span.navbar-toggler-icon
-    .navbar-collapse.collapse.w-100.order-3.dual-collapse2
+    .navbar-collapse.collapse.w-100.order-3
       ul.navbar-nav.ml-auto
         li.nav-item.mx-2.my-auto(v-if="!isFullscreen")
           router-link.nav-link(to="/new")
@@ -115,13 +113,13 @@ export default {
     color: white;
     transition: color 0.15s ease-in-out;
     &:hover {
-      color: $gray-800 !important;
+      color: darken($primary, 20) !important;
     }
   }
 
   .btn:hover {
     .ion {
-      color: $gray-800;
+      color: darken($primary, 20);
     }
   }
 }

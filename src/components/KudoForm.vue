@@ -6,7 +6,7 @@
   .card
     .row.align-items-center
       .col-12.col-sm-6.form-part.pr-0
-        form.m-4(@submit="add")
+        form.m-4
           .form-group.d-flex.justify-content-center.align-items-center
             input.form-control(
               v-model="kudo.title"
@@ -19,14 +19,14 @@
                   v-for="(icon, index) in icons",
                   :key="icon",
                   :name="icon",
-                  :color="kudo.styles.headerIconColor",
+                  :color="kudo.headerIconColor",
                   @click.native="selectIcon(icon)"
                 )
               .kudo-icon(slot="reference")
                 kudo-icon.p-1.ml-1(
                   @click.native="showPopIcon = !showPopIcon",
                   :name="kudo.icon",
-                  :color="kudo.styles.headerIconColor",
+                  :color="kudo.headerIconColor",
                 )
           .form-group
             textarea(
@@ -44,31 +44,29 @@
             )
           .form-group
             swatches(
-              v-model="kudo.styles.headerBkgColor",
+              v-model="kudo.headerBkgColor",
               colors="text-advanced",
             )
             swatches(
-              v-model="kudo.styles.headerColor",
+              v-model="kudo.headerColor",
               colors="text-advanced",
             )
             swatches(
-              v-model="kudo.styles.headerIconColor",
+              v-model="kudo.headerIconColor",
               colors="text-advanced",
             )
       .col-12.col-sm-6.kudo-part.pl-0
         kudo.card.m-4(
-          :title="kudo.title",
-          :content="kudo.content",
-          :image="kudo.image"
-          :icon="kudo.icon"
-          :styles="kudo.styles"
+          :kudo="kudo"
         )
   .row.mt-4.justify-content-center
     .col-md-4.col-sm-6.col-12.text-center
-      button.btn.btn-primary.btn-lg.btn-block(type='submit') {{ $t('Submit') }}
+      button.btn.btn-primary.btn-lg.btn-block(@click="createKudo", type='submit') {{ $t('Submit') }}
 </template>
 
 <script>
+import CreateKudo from '@/graphql/mutations/CreateKudo';
+
 import Popper from 'vue-popperjs';
 import Swatches from 'vue-swatches';
 import Kudo from './Kudo/Kudo.vue';
@@ -106,21 +104,29 @@ export default {
         title: 'Thank you Benito',
         content: 'Always a pleasure to work with you!',
         icon: 'ios-medal',
-        styles: {
-          headerBkgColor: 'rgb(239, 239, 239)',
-          headerColor: 'rgb(224, 102, 102)',
-          headerIconColor: 'rgb(241, 194, 50)',
-        },
+        image: null,
+        headerBkgColor: 'rgb(239, 239, 239)',
+        headerColor: 'rgb(224, 102, 102)',
+        headerIconColor: 'rgb(241, 194, 50)',
       },
     };
   },
   methods: {
-    add() {
-      console.log('as');
-    },
     selectIcon(icon) {
       this.kudo.icon = icon;
       this.showPopIcon = false;
+    },
+    createKudo() {
+      this.$apollo.mutate({
+        mutation: CreateKudo,
+        variables: this.kudo,
+      }).then(() => {
+        this.$router.push({ name: 'Home' });
+        this.$snotify.success(this.$t('Your kudo has been sent successfully.'), this.$t('Congratulations!'));
+      }).catch((error) => {
+        console.error(error);
+        this.$snotify.error(this.$t('Please contact with admins.'), this.$t('Unexpected error'));
+      });
     },
   },
   components: {
