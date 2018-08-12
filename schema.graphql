@@ -1,0 +1,47 @@
+input CreateKudoInput {
+	id: ID
+	title: String
+	content: String
+	icon: String
+	image: String
+	createdAt: AWSDateTime
+	headerBkgColor: String
+	headerColor: String
+	headerIconColor: String
+}
+
+type Kudo {
+	id: ID
+	title: String
+	content: String
+	icon: String
+	image: String
+	createdAt: AWSDateTime
+	headerBkgColor: String
+	headerColor: String
+	headerIconColor: String
+}
+
+type KudoConnection {
+	items: [Kudo]
+	nextToken: String
+}
+
+type Mutation {
+	createKudo(input: CreateKudoInput!): Kudo
+}
+
+type Query {
+	listKudos(limit: Int, nextToken: String): KudoConnection
+}
+
+type Subscription {
+	onCreateKudo(id: ID, createdAt: AWSDateTime): Kudo
+		@aws_subscribe(mutations: ["createKudo"])
+}
+
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}
