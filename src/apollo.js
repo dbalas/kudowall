@@ -1,15 +1,14 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
 import AWSAppSyncClient from 'aws-appsync';
-import appSyncConfig from './AppSync';
 
 // Configuring Apollo
 const client = new AWSAppSyncClient({
-  url: appSyncConfig.graphqlEndpoint,
-  region: appSyncConfig.region,
+  url: process.env.VUE_APP_APPSYNC_GRAPHQL_ENDPOINT,
+  region: process.env.VUE_APP_APPSYNC_REGION,
   auth: {
-    type: appSyncConfig.authenticationType,
-    apiKey: appSyncConfig.apiKey,
+    type: process.env.VUE_APP_APPSYNC_AUTHENTICATION_TYPE,
+    apiKey: process.env.VUE_APP_APPSYNC_API_KEY,
   },
 }, {
   defaultOptions: {
