@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-    query ListKudos($limit: Int, $nextToken: String, $orderBy: String) {
-      listKudos(limit: $limit, nextToken: $nextToken, orderBy: $orderBy) {
+    query ListKudos($limit: Int, $nextToken: String) {
+      listKudos(limit: $limit, nextToken: $nextToken) {
         items {
           id
           createdAt
