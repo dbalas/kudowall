@@ -1,5 +1,5 @@
 <template lang="pug">
-  component(:is="name", w="30px", h="30px", :style="{color}")
+  component(:is="name", w="140px", h="140px", :style="{color}")
 </template>
 
 <script>
@@ -26,6 +26,8 @@ import IosRibbon from 'vue-ionicons/dist/ios-ribbon.vue';
 import IosStar from 'vue-ionicons/dist/ios-star.vue';
 import IosSunny from 'vue-ionicons/dist/ios-sunny.vue';
 import IosRocket from 'vue-ionicons/dist/ios-rocket.vue';
+import IosHappy from 'vue-ionicons/dist/ios-happy.vue';
+import IosGift from 'vue-ionicons/dist/ios-gift.vue';
 
 export default {
   name: 'KudoIcon',
@@ -52,6 +54,8 @@ export default {
     IosStar,
     IosSunny,
     IosRocket,
+    IosHappy,
+    IosGift,
   },
 };
 </script>

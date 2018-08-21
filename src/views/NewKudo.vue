@@ -1,18 +1,15 @@
 <template lang="pug">
-.new-kudo.py-5
-  .container
-    .row.justify-content-center.align-items-center
-      .col
-        kudo-form
+.new-kudo
+  kudo-steps
 </template>
 
 <script>
-import KudoForm from '@/components/KudoForm.vue';
+import KudoSteps from '@/components/KudoSteps/KudoSteps.vue';
 
 export default {
   name: 'NewKudo',
   components: {
-    KudoForm,
+    KudoSteps,
   },
 };
 </script>
@@ -20,4 +17,7 @@ export default {
 <style lang="scss">
 @import '../assets/bootstrap';
 
+.new-kudo {
+  height: calc(100% - 56.19px);
+}
 </style>

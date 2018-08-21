@@ -2,23 +2,26 @@
   .kudo-card
     .card-header.d-flex.align-items-center(
       v-if="kudo.title",
-      :style="{backgroundColor: kudo.headerBkgColor}"
+      :style="{backgroundColor: headerBackground, borderColor: headerBorderColor}"
     )
-      h5.mr-auto.my-0.mx-0(:style="{color: kudo.headerColor}") {{ kudo.title }}
-      kudo-icon(:name="kudo.icon", :color="kudo.headerIconColor")
+      h5.mr-auto.my-0.mx-0(:style="{color: headerColor}") {{ kudo.title }}
     .card-body
       p.card-text(v-if="kudo.content") {{ kudo.content }}
-      .image.text-center
-        img.img-fluid.rounded(v-if="kudo.image", :src="kudo.image")
+      .icon
+        kudo-icon(:name="kudo.icon", :color="headerIconColor")
 </template>
 
 <script>
+import { darken } from '@/lib/color';
 import KudoIcon from './KudoIcon.vue';
 
 export default {
   name: 'Kudo',
   props: ['kudo'],
   computed: {
+    headerBorderColor() {
+      return darken(this.kudo.headerBkgColor, 20);
+    },
     headerColor() {
       return this.kudo && this.kudo.headerColor ? this.kudo.headerColor : '#000000';
     },
@@ -40,12 +43,33 @@ export default {
 
 .card-header {
   border: 1px;
-  padding: 0.8rem 1rem;
-  min-height: 56px;
+  padding: 0.7rem 1rem;
+  min-height: 50px;
+  border-bottom: 3px solid;
+  text-transform: uppercase;
 }
 
-.image img {
-  max-height: 500px;
+.card-body {
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  background: url(~@/assets/lined_paper.jpg);
+  background-position-y: 13px;
+  padding: 0 1rem;
+}
+
+.card-text {
+  z-index: 100;
+  position: relative;
+  margin-top: 4px;
+  line-height: 1.9;
+}
+
+.icon {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  z-index: 0;
 }
 
 </style>

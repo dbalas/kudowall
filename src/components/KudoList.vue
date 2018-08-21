@@ -1,4 +1,5 @@
 <template lang="pug">
+.kudo-list(:class="{ isSelection }")
   masonry(
     :cols="{default: 3, 1000: 2, 800: 2, 500: 1}",
     :gutter="{default: '20px'}"
@@ -9,7 +10,9 @@
       v-for="kudo in kudos",
       :key="kudo.id"
     )
-      kudo.card(:kudo="kudo"
+      kudo.card(
+        @click.native="select(kudo)"
+        :kudo="kudo"
       )
 </template>
 
@@ -18,7 +21,12 @@ import Kudo from './Kudo/Kudo.vue';
 
 export default {
   name: 'KudoList',
-  props: ['kudos'],
+  props: ['kudos', 'isSelection'],
+  methods: {
+    select(kudo) {
+      if (this.isSelection) this.$emit('select', kudo);
+    },
+  },
   components: {
     Kudo,
   },
@@ -27,6 +35,13 @@ export default {
 
 <style lang="scss">
 @import '../assets/bootstrap';
+
+.isSelection {
+  .card:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 5px #d8d8d8;
+  }
+}
 
 .card {
   margin-top: 20px !important;
