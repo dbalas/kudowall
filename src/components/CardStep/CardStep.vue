@@ -1,30 +1,44 @@
 <template lang="pug">
 .card-step.h-100
   .row.align-items-center.justify-content-center.h-100
-    .col-4
-      kudo.card(v-if="context.kudo", :kudo="context.kudo")
+    .col-12.col-sm-10.col-md-6.col-lg-5.col-xl-4.px-4
+      kudo-editable.card(v-if="kudo", :kudo="kudo", v-model="content")
+      .confirm-button.text-center.pt-3
+        button.btn.btn-primary.btn-lg(
+          @click="confirm",
+          type='submit'
+        ) {{ $t('Submit') }}
 </template>
 
 <script>
-import Kudo from '@/components/Kudo/Kudo.vue';
+import KudoEditable from '@/components/Kudo/KudoEditable.vue';
 
 export default {
   name: 'CardStep',
-  props: ['context'],
+  props: ['kudo'],
   data() {
-    return {};
+    return {
+      content: null,
+    };
   },
   created() {},
   computed: {},
-  methods: {},
+  methods: {
+    confirm() {
+      this.$emit('confirm', this.content);
+    },
+  },
   components: {
-    Kudo,
+    KudoEditable,
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../assets/bootstrap';
 
+.card-step {
+
+}
 </style>
 

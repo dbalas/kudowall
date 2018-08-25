@@ -1,10 +1,13 @@
 <template lang="pug">
 .card-options-step(v-bar)
-  .py-4.container-fluid
+  .py-0.py-sm-4.container-fluid
     .row.justify-content-center
-      .col-9
-        h5.pb-2.text-center {{ $t('How?') }}
-        kudo-list(:kudos="kudos", :isSelection="true", @select="select")
+      .col-12.col-xl-10
+        kudo-list(
+          :kudos="kudos",
+          :defaultKudo="kudo",
+          :isSelection="true",
+          @select="select")
 </template>
 
 <script>
@@ -13,6 +16,7 @@ import kudos from '@/kudoTemplates';
 
 export default {
   name: 'CardOptionsStep',
+  props: ['kudo'],
   data() {
     return {
       kudos,
@@ -21,7 +25,6 @@ export default {
   methods: {
     select(kudo) {
       this.$emit('select', kudo);
-      this.$emit('next');
     },
   },
   components: {
@@ -30,11 +33,16 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../assets/bootstrap';
 
 .card-options-step {
   height: 100%;
 }
+
+.row {
+  margin-right: 20px;
+}
+
 </style>
 

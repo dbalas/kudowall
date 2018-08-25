@@ -13,6 +13,9 @@ export default gql`
           headerBkgColor
           headerColor
           headerIconColor
+          userId
+          userName
+          userImage
         }
         nextToken
       }

@@ -15,12 +15,16 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../assets/bootstrap';
 
 .slack-user {
   padding: 0.7rem 1rem;
   cursor: pointer;
+
+  &:hover {
+    background-color: $gray-100;
+  }
 
   .profile-image {
     border-radius: 50%;

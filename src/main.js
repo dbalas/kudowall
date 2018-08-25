@@ -3,11 +3,10 @@ import VueMasonry from 'vue-masonry-css';
 import Snotify, { SnotifyPosition } from 'vue-snotify';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import Vuebar from 'vuebar';
+import VTooltip from 'v-tooltip';
 
 // Global styles
 import 'vue-snotify/styles/material.css';
-import 'vue-swatches/dist/vue-swatches.min.css';
-import 'vue-popperjs/dist/css/vue-popper.css';
 import './assets/styles.scss';
 // eslint-disable-next-line
 import 'swiper/dist/css/swiper.css';
@@ -27,12 +26,9 @@ Vue.use(Snotify, {
     position: SnotifyPosition.rightTop,
   },
 });
-Vue.use(VueAwesomeSwiper, {
-  loop: false,
-  allowTouchMove: false,
-  speed: 500,
-});
+Vue.use(VueAwesomeSwiper);
 Vue.use(Vuebar);
+Vue.use(VTooltip);
 
 new Vue({
   router,

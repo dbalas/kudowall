@@ -2,14 +2,19 @@
   nav.navbar.navbar-expand-md.navbar-dark.bg-primary
     .navbar-collapse.collapse.w-100.order-1.order-md-0
       ul.navbar-nav.mr-auto
-    .mx-auto.order-0
+    .base-links.mx-auto.order-0.d-flex.align-items-center.justify-content-between
       router-link.navbar-brand.mx-auto(to="/") KUDOWALL
+      .collapsed
+        router-link.mx-2(to="/new")
+            add-circle-outline-icon(:title="$t('Add new kudos')", w="25px", h="25px")
+        a.mx-2(href='#', @click="toggleFullscreen")
+            component(:is="fullscreenIcon", :title="$t('Add new kudos')", w="25px", h="25px")
     .navbar-collapse.collapse.w-100.order-3
       ul.navbar-nav.ml-auto
         li.nav-item.mx-2.my-auto(v-if="!isFullscreen")
           router-link.nav-link(to="/new")
             button.btn.btn-sm.btn-outline-light(type='button')
-              add-circle-outline-icon(title="Add new kudos", w="25px", h="25px")
+              add-circle-outline-icon(:title="$t('Add new kudos')", w="25px", h="25px")
               span {{ $t('New Kudo') }}
         li.nav-item.mx-2.my-auto
           a.nav-link(href='#', @click="toggleFullscreen")
@@ -93,7 +98,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/bootstrap';
 
 .navbar-brand {
@@ -126,6 +131,35 @@ export default {
 
 .nav-link {
   padding: 0 1rem;
+}
+
+.collapsed {
+  display: none !important;
+
+  @media (max-width: 770px) {
+    display: inherit !important;
+  }
+}
+
+.base-links {
+  @media (max-width: 770px) {
+    width: 100%;
+    margin: inherit !important;
+
+    .navbar-brand {
+      margin-top: -3px;
+      position: relative;
+      right: -3rem !important;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .navbar-brand {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      right: 0 !important;
+    }
+  }
 }
 </style>
 

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  mutation CreateKudo($title: String, $content: String, $icon: String, $image: String, $headerBkgColor: String, $headerColor: String, $headerIconColor: String) {
+  mutation CreateKudo($title: String, $content: String, $icon: String, $image: String, $headerBkgColor: String, $headerColor: String, $headerIconColor: String, $userId: String, $userName: String, $userImage: String) {
     createKudo(
       input: {
         title: $title,
@@ -10,7 +10,10 @@ export default gql`
         image: $image,
         headerBkgColor: $headerBkgColor,
         headerColor: $headerColor,
-        headerIconColor: $headerIconColor
+        headerIconColor: $headerIconColor,
+        userId: $userId,
+        userName: $userName,
+        userImage: $userImage
       }
     ) {
         id
@@ -22,6 +25,9 @@ export default gql`
         headerBkgColor
         headerColor
         headerIconColor
+        userId
+        userName
+        userImage
       }
   }
 `;

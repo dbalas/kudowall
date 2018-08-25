@@ -1,7 +1,7 @@
 <template lang="pug">
 .kudo-list(:class="{ isSelection }")
   masonry(
-    :cols="{default: 3, 1000: 2, 800: 2, 500: 1}",
+    :cols="{default: 3, 1200: 2, 800: 2, 600: 1}",
     :gutter="{default: '20px'}"
   )
     transition(
@@ -12,7 +12,7 @@
     )
       kudo.card(
         @click.native="select(kudo)"
-        :kudo="kudo"
+        :kudo="getKudo(kudo)"
       )
 </template>
 
@@ -21,10 +21,19 @@ import Kudo from './Kudo/Kudo.vue';
 
 export default {
   name: 'KudoList',
-  props: ['kudos', 'isSelection'],
+  props: ['kudos', 'defaultKudo', 'isSelection'],
   methods: {
     select(kudo) {
       if (this.isSelection) this.$emit('select', kudo);
+    },
+    getKudo(kudo) {
+      if (this.defaultKudo) {
+        return {
+          ...this.defaultKudo,
+          ...kudo,
+        };
+      }
+      return kudo;
     },
   },
   components: {
@@ -33,7 +42,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/bootstrap';
 
 .isSelection {
@@ -41,15 +50,6 @@ export default {
     cursor: pointer;
     box-shadow: 0px 0px 20px 5px #d8d8d8;
   }
-}
-
-.card {
-  margin-top: 20px !important;
-  margin-bottom: 20px !important;
-  border: none;
-  border-radius: 2px;
-  box-shadow: 1px 1px 5px #d8d8d8;
-  background-color: #FFFFFF;
 }
 
 .list {

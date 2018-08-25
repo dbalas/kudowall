@@ -1,9 +1,8 @@
 <template lang="pug">
 .user-step.h-100
   .row.align-items-center.justify-content-center.h-100
-    .col-3
-      h5.pb-2.text-center {{ $t('Who?') }}
-      .user-search.card
+    .col-12.col-sm-10.col-md-6.col-lg-5.col-xl-4
+      .user-search.card.mb-3
         .input-group
           span.inner-icon
             ios-search-icon(w="25px", h="25px")
@@ -16,7 +15,7 @@
           transition(name="fade")
             span.inner-right-icon(@click="removeSearch", v-show="searchUser")
               ios-close-icon(w="35px", h="35px")
-      .users.card(v-bar)
+      .users.card(:style="{height: height + 'px'}", v-bar)
         .users-container
           .loading.p-5.text-center(v-if="loading")
             looping-rhombuses-spinner(
@@ -54,6 +53,7 @@ export default {
   name: 'UserStep',
   data() {
     return {
+      height: 500,
       searchUser: null,
       slackUsers: [],
       loading: true,
@@ -61,6 +61,10 @@ export default {
     };
   },
   created() {
+    // eslint-disable-next-line
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize);
+
     this.loading = true;
     slack.users.list().then((result) => {
       this.slackUsers = result.members;
@@ -71,6 +75,10 @@ export default {
       this.loading = false;
       this.error = true;
     });
+  },
+  beforeDestroy() {
+    // eslint-disable-next-line
+    window.removeEventListener('resize', this.handleResize);
   },
   computed: {
     users() {
@@ -94,10 +102,18 @@ export default {
   methods: {
     select(user) {
       this.$emit('select', user);
-      this.$emit('next');
     },
     removeSearch() {
       this.searchUser = null;
+    },
+    handleResize() {
+      // eslint-disable-next-line
+      const height = window.innerHeight;
+      if (height < 650) {
+        this.height = height - 150;
+      } else {
+        this.height = 500;
+      }
     },
   },
   components: {
@@ -109,8 +125,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../assets/bootstrap';
+
+.user-step {
+  padding: 0 15px;
+}
 
 .placeholder-select {
   font-size: 1.1rem;
@@ -121,7 +141,6 @@ export default {
 .users {
   border: 1px solid $gray-200;
   border-radius: 4px;
-  height: 500px;
   overflow: auto;
 }
 
