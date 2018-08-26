@@ -1,8 +1,8 @@
 # KudoWall
 
-<img src="public/logo.svg" width="380"/>
+<img src="public/logo.svg" width="100"/>
 
-> Virtual KudoWall implementation using VueJS and AWS.
+> Virtual kudos wall implementation using VueJS and AWS.
 
 ## Features
 * Fullscreen mode
