@@ -15,14 +15,16 @@
     border-width: 2px;
     line-height: 1.3;
     font-weight: 500;
-    .ion,
-    span {
+
+    .ion, span {
         display: inline-block;
         vertical-align: middle;
     }
-    .ion+span {
+
+    .ion + span {
         margin-left: 0.4rem;
     }
+
     &:hover {
         .ion {
             color: white;
@@ -36,6 +38,7 @@
     transition: color 0.25s;
     will-change: color;
     line-height: 0;
+
     &:hover {
         color: darken($primary, 10%);
     }
@@ -81,6 +84,7 @@ h6,
     color: inherit;
 }
 
+// Animations
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity .10s;
@@ -92,11 +96,28 @@ h6,
     opacity: 0;
 }
 
-.popper {
-    background-color: #ffffff !important;
-    max-width: 300px !important;
-    box-shadow: none !important;
+.list {
+    backface-visibility: hidden;
+    z-index: 1;
 }
+
+.list-move {
+    transition: all 600ms ease-in-out 50ms;
+}
+
+.list-enter-active {
+    transition: all 400ms ease-out;
+}
+
+.list-leave-active {
+    transition: all 200ms ease-in;
+    position: absolute;
+    z-index: 0;
+}
+.list-enter, .list-leave-to {
+    opacity: 0;
+}
+
 
 // Custom snotify styles
 .snotifyToast__title {

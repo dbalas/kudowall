@@ -1,6 +1,6 @@
 <template lang="pug">
-  kudo-base(:kudo="kudo")
-    p.card-text(v-if="kudo.content") {{ kudo.content }}
+kudo-base(:kudo="kudo", @click="$emit('click')")
+  p.card-text(v-if="kudo.content") {{ kudo.content }}
 </template>
 
 <script>
@@ -25,7 +25,5 @@ export default {
   margin-top: 4px;
   line-height: 1.9;
 }
-
-
 </style>
 

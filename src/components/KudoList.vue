@@ -11,7 +11,7 @@
       :key="kudo.id"
     )
       kudo.card(
-        @click.native="select(kudo)"
+        @click="select(kudo)"
         :kudo="getKudo(kudo)"
       )
 </template>
@@ -50,34 +50,6 @@ export default {
     cursor: pointer;
     box-shadow: 0px 0px 20px 5px #d8d8d8;
   }
-}
-
-.list {
-  backface-visibility: hidden;
-  z-index: 1;
-}
-
-/* moving */
-.list-move {
-  transition: all 600ms ease-in-out 50ms;
-}
-
-/* appearing */
-.list-enter-active {
-  transition: all 400ms ease-out;
-}
-
-/* disappearing */
-.list-leave-active {
-  transition: all 200ms ease-in;
-  position: absolute;
-  z-index: 0;
-}
-
-/* appear at / disappear to */
-.list-enter,
-.list-leave-to {
-  opacity: 0;
 }
 
 </style>

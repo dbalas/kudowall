@@ -1,41 +1,42 @@
 <template lang="pug">
 .user-step.h-100
-  .row.align-items-center.justify-content-center.h-100
-    .col-12.col-sm-10.col-md-6.col-lg-5.col-xl-4
-      .user-search.card.mb-3
-        .input-group
-          span.inner-icon
-            ios-search-icon(w="25px", h="25px")
-          input.form-control.form-control-lg(
-            v-model="searchUser"
-            type='text',
-            placeholder='Username',
-            required
-          )
-          transition(name="fade")
-            span.inner-right-icon(@click="removeSearch", v-show="searchUser")
-              ios-close-icon(w="35px", h="35px")
-      .users.card(:style="{height: height + 'px'}", v-bar)
-        .users-container
-          .loading.p-5.text-center(v-if="loading")
-            looping-rhombuses-spinner(
-              :animation-duration="2500"
-              :rhombus-size="15"
-              color="#2b97fd"
+  .container-fluid.h-100
+    .row.justify-content-center.align-items-center.h-100
+      .col-12.col-sm-10.col-md-6.col-lg-5.col-xl-4
+        .user-search.card.mb-3
+          .input-group
+            span.inner-icon
+              ios-search-icon(w="25px", h="25px")
+            input.form-control.form-control-lg(
+              v-model="searchUser"
+              type='text',
+              placeholder='Username',
+              required
             )
-          h6.p-5.text-center(v-if="!loading && !error && !users.length")
-            span {{ $t('No users found :(') }}
-          h6.p-5.text-center(v-if="!loading && error")
-            span {{ $t('Unexpected error') }}
-          slack-user(
-            v-if="!loading && !error"
-            v-for="user in users",
-            :key="user.id",
-            @click="select(user)"
-            :image="user.profile.image_72"
-            :name="user.profile.real_name"
-            :title="user.profile.title"
-          )
+            transition(name="fade")
+              span.inner-right-icon(@click="removeSearch", v-show="searchUser")
+                ios-close-icon(w="35px", h="35px")
+        .users.card(:style="{height: height + 'px'}", v-bar)
+          .users-container
+            .loading.p-5.text-center(v-if="loading")
+              looping-rhombuses-spinner(
+                :animation-duration="2500"
+                :rhombus-size="15"
+                color="#2b97fd"
+              )
+            h6.p-5.text-center(v-if="!loading && !error && !users.length")
+              span {{ $t('No users found :(') }}
+            h6.p-5.text-center(v-if="!loading && error")
+              span {{ $t('Unexpected error') }}
+            slack-user(
+              v-if="!loading && !error"
+              v-for="user in users",
+              :key="user.id",
+              @click="select(user)"
+              :image="user.profile.image_72"
+              :name="user.profile.real_name"
+              :title="user.profile.title"
+            )
 </template>
 
 <script>
@@ -128,10 +129,6 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/bootstrap';
 
-.user-step {
-  padding: 0 15px;
-}
-
 .placeholder-select {
   font-size: 1.1rem;
   font-weight: 500;
@@ -181,4 +178,3 @@ export default {
   display: inline-block;
 }
 </style>
-

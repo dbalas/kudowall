@@ -1,16 +1,13 @@
 <template lang="pug">
-  .kudo-card
-    .card-header.d-flex.align-items-center(
-      v-if="kudo.title",
-      :style="{backgroundColor: headerBackground, borderColor: headerBorderColor}"
-    )
-      h5.mr-auto.my-0.mx-0(:style="{color: headerColor}") {{ kudo.title }}
-      .user(v-show="kudo.userImage")
-        img(:src="kudo.userImage", v-tooltip="kudo.userName")
-    .card-body
-      slot
-      .icon
-        kudo-icon(:name="kudo.icon", :color="headerIconColor")
+.kudo-card(@click="$emit('click')")
+  .card-header.d-flex.align-items-center(:style="cardHeaderStyles")
+    h5.mr-auto.my-0.mx-0(:style="titleStyles") {{ kudo.title }}
+    .user(v-show="kudo.userImage")
+      img(:src="kudo.userImage", v-tooltip="kudo.userName")
+  .card-body
+    slot
+    .icon
+      kudo-icon(:name="kudo.icon", :color="headerIconColor")
 </template>
 
 <script>
@@ -21,14 +18,19 @@ export default {
   name: 'KudoBase',
   props: ['kudo'],
   computed: {
-    headerBorderColor() {
-      return darken(this.kudo.headerBkgColor, 20);
+    cardHeaderStyles() {
+      const headerBorderColor = this.kudo.headerBkgColor ? darken(this.kudo.headerBkgColor, 20) : 'rgba(0, 0, 0, 0.03)';
+      const headerBackground = this.kudo.headerBkgColor ? this.kudo.headerBkgColor : 'rgba(0, 0, 0, 0.03)';
+      return {
+        backgroundColor: headerBackground,
+        borderColor: headerBorderColor,
+      };
     },
-    headerColor() {
-      return this.kudo && this.kudo.headerColor ? this.kudo.headerColor : '#000000';
-    },
-    headerBackground() {
-      return this.kudo && this.kudo.headerBkgColor ? this.kudo.headerBkgColor : 'rgba(0, 0, 0, 0.03)';
+    titleStyles() {
+      const headerColor = this.kudo && this.kudo.headerColor ? this.kudo.headerColor : '#000000';
+      return {
+        color: headerColor,
+      };
     },
     headerIconColor() {
       return this.kudo && this.kudo.headerIconColor ? this.kudo.headerIconColor : '#000000';
@@ -73,6 +75,5 @@ export default {
     height: auto;
   }
 }
-
 </style>
 

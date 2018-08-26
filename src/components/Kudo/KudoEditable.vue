@@ -1,11 +1,11 @@
 <template lang="pug">
-  kudo-base(:kudo="kudo")
-    textarea(
-      rows="5",
-      @input="$emit('input', $event.target.value)",
-      :value="value",
-      :placeholder="$t('Write here your kudos :)')"
-    )
+kudo-base(:kudo="kudo")
+  textarea(
+    rows="5",
+    @input="$emit('input', $event.target.value)",
+    :value="value",
+    :placeholder="$t('Write here your kudos :)')"
+  )
 </template>
 
 <script>
@@ -34,6 +34,5 @@ textarea {
   resize: none;
   overflow: hidden;
 }
-
 </style>
 

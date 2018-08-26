@@ -1,13 +1,14 @@
 <template lang="pug">
-.card-options-step(v-bar)
-  .py-0.py-sm-4.container-fluid
-    .row.justify-content-center
-      .col-12.col-xl-10
-        kudo-list(
-          :kudos="kudos",
-          :defaultKudo="kudo",
-          :isSelection="true",
-          @select="select")
+div.h-100(v-bar)
+  .card-options-step.h-100
+    .container-fluid.h-100
+      .row.justify-content-center.h-100
+        .col-12.col-xl-10
+          kudo-list(
+            :kudos="kudos",
+            :defaultKudo="kudo",
+            :isSelection="true",
+            @select="select")
 </template>
 
 <script>
@@ -32,17 +33,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import '../../assets/bootstrap';
-
-.card-options-step {
-  height: 100%;
-}
-
-.row {
-  margin-right: 20px;
-}
-
-</style>
-

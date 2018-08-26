@@ -2,7 +2,7 @@
   nav.navbar.navbar-expand-md.navbar-dark.bg-primary
     .navbar-collapse.collapse.w-100.order-1.order-md-0
       ul.navbar-nav.mr-auto
-    .base-links.mx-auto.order-0.d-flex.align-items-center.justify-content-between
+    .title-navbar.mx-auto.order-0.d-flex.align-items-center.justify-content-between
       router-link.navbar-brand.mx-auto(to="/") KUDOWALL
       .collapsed
         router-link.mx-2(to="/new")
@@ -22,42 +22,10 @@
 </template>
 
 <script>
+import { init, destroy, enter, exit } from '@/lib/fullscreen';
 import ExpandIcon from 'vue-ionicons/dist/md-expand.vue';
 import ContractIcon from 'vue-ionicons/dist/md-contract.vue';
 import AddCircleOutlineIcon from 'vue-ionicons/dist/md-add-circle-outline.vue';
-
-/* Get the documentElement (<html>) to display the page in fullscreen */
-const elem = document.documentElement;
-
-/* View in fullscreen */
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.mozRequestFullScreen) { /* Firefox */
-    elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE/Edge */
-    elem.msRequestFullscreen();
-  }
-}
-
-/* Close fullscreen */
-function closeFullscreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.mozCancelFullScreen) { /* Firefox */
-    document.mozCancelFullScreen();
-  } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) { /* IE/Edge */
-    document.msExitFullscreen();
-  }
-}
-
-function isFullscreen() {
-  return window.screenTop || window.screenY;
-}
 
 export default {
   name: 'Navbar',
@@ -67,22 +35,17 @@ export default {
     };
   },
   created() {
-    document.addEventListener('webkitfullscreenchange', () => {
-      this.isFullscreen = isFullscreen();
-    }, false);
-
-    document.addEventListener('mozfullscreenchange', () => {
-      this.isFullscreen = isFullscreen();
-    }, false);
-
-    document.addEventListener('fullscreenchange', () => {
-      this.isFullscreen = isFullscreen();
-    }, false);
+    init((isFullscreen) => {
+      this.isFullscreen = isFullscreen;
+    });
+  },
+  destroy() {
+    destroy();
   },
   methods: {
     toggleFullscreen() {
-      if (this.isFullscreen) closeFullscreen();
-      else openFullscreen();
+      if (this.isFullscreen) exit();
+      else enter();
     },
   },
   computed: {
@@ -100,14 +63,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/bootstrap';
-
-.navbar-brand {
-  font-weight: 500;
-  font-size: 1.2rem;
-  letter-spacing: 0.5rem;
-  text-align: center;
-}
-
 .navbar {
   padding: 0.6rem;
   -webkit-box-shadow: 0 2px 2px $gray-200;
@@ -133,6 +88,14 @@ export default {
   padding: 0 1rem;
 }
 
+.navbar-brand {
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 0.5rem;
+  text-align: center;
+}
+
+
 .collapsed {
   display: none !important;
 
@@ -141,24 +104,24 @@ export default {
   }
 }
 
-.base-links {
-  @media (max-width: 770px) {
-    width: 100%;
-    margin: inherit !important;
-
-    .navbar-brand {
+.title-navbar {
+  .navbar-brand {
+    @media (max-width: 770px) {
       margin-top: -3px;
       position: relative;
       right: -3rem !important;
     }
-  }
 
-  @media (max-width: 390px) {
-    .navbar-brand {
+    @media (max-width: 390px) {
       margin-left: 0 !important;
       margin-right: 0 !important;
       right: 0 !important;
     }
+  }
+
+  @media (max-width: 770px) {
+    width: 100%;
+    margin: inherit !important;
   }
 }
 </style>

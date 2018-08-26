@@ -1,14 +1,12 @@
 <template lang="pug">
 .slack-user.d-flex.align-items-center(@click="$emit('click')")
-    img.profile-image(:src="image")
-    .text-content
-        p.name {{ name }}
-        p.title.text-muted {{ title }}
+  img.profile-image(:src="image")
+  .text-content
+    p.name {{ name }}
+    p.title.text-muted {{ title }}
 </template>
 
 <script>
-
-
 export default {
   name: 'SlackUser',
   props: ['image', 'name', 'title'],

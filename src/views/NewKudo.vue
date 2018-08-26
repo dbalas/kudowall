@@ -14,9 +14,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../assets/bootstrap';
-
+<style lang="scss" scoped>
 .new-kudo {
   height: calc(100% - 56.19px);
 }

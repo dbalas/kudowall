@@ -73,7 +73,6 @@ export default {
       this.swiper.slideNext();
     },
     back() {
-      console.log('slidePrev');
       this.swiper.slidePrev();
     },
   },
