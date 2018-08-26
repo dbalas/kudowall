@@ -10,7 +10,7 @@
             input.form-control.form-control-lg(
               v-model="searchUser"
               type='text',
-              :placeholder="$t('Username')",
+              :placeholder="$t('Search a user')",
               required
             )
             transition(name="fade")

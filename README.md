@@ -5,10 +5,10 @@
 > Virtual KudoWall implementation using VueJS and AWS.
 
 ## Features
-* Customize kudos appearance.
-* Fullscreen mode.
-* Real-time.
-* Offline capabilities.
+* Fullscreen mode
+* Real-time
+* Offline capabilities
+* i18n ready
 
 ## Requirements
 * Create an AWS AppSync API.

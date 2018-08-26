@@ -1,3 +1,13 @@
 {
-  "message": "hello i18n !!"
+  "Add new kudos": "Add new kudos",
+  "New Kudo": "New Kudo",
+  "No kudos yet :(": "No kudos yet :(",
+  "Do you want to be the first?": "Do you want to be the first?",
+  "Submit": "Submit",
+  "Write here your kudos :)": "Write here your kudos :)",
+  "Search a user": "Search a user",
+  "Your kudos has been sent successfully.": "Your kudos has been sent successfully.",
+  "Congratulations!": "Congratulations!",
+  "Unexpected error": "Unexpected error",
+  "No users found :(": "No users found :("
 }

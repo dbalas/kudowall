@@ -18,7 +18,7 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-primary
             span {{ $t('New Kudo') }}
       li.nav-item.mx-2.my-auto
         a.nav-link(href='#', @click="toggleFullscreen")
-          component(:is="fullscreenIcon", :title="$t('Add new Kudo')", w="25px", h="25px")
+          component(:is="fullscreenIcon", :title="$t('Add new kudos')", w="25px", h="25px")
 </template>
 
 <script>
