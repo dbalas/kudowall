@@ -42,5 +42,4 @@ export default {
     align-items: flex-start !important;
   }
 }
-
 </style>

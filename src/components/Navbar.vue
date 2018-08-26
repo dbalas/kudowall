@@ -1,24 +1,24 @@
 <template lang="pug">
-  nav.navbar.navbar-expand-md.navbar-dark.bg-primary
-    .navbar-collapse.collapse.w-100.order-1.order-md-0
-      ul.navbar-nav.mr-auto
-    .title-navbar.mx-auto.order-0.d-flex.align-items-center.justify-content-between
-      router-link.navbar-brand.mx-auto(to="/") KUDOWALL
-      .collapsed
-        router-link.mx-2(to="/new")
+nav.navbar.navbar-expand-md.navbar-dark.bg-primary
+  .navbar-collapse.collapse.w-100.order-1.order-md-0
+    ul.navbar-nav.mr-auto
+  .title-navbar.mx-auto.order-0.d-flex.align-items-center.justify-content-between
+    router-link.navbar-brand.mx-auto(to="/") KUDOWALL
+    .collapsed
+      router-link.mx-2(to="/new")
+          add-circle-outline-icon(:title="$t('Add new kudos')", w="25px", h="25px")
+      a.mx-2(href='#', @click="toggleFullscreen")
+          component(:is="fullscreenIcon", :title="$t('Add new kudos')", w="25px", h="25px")
+  .navbar-collapse.collapse.w-100.order-3
+    ul.navbar-nav.ml-auto
+      li.nav-item.mx-2.my-auto(v-if="!isFullscreen")
+        router-link.nav-link(to="/new")
+          button.btn.btn-sm.btn-outline-light(type='button')
             add-circle-outline-icon(:title="$t('Add new kudos')", w="25px", h="25px")
-        a.mx-2(href='#', @click="toggleFullscreen")
-            component(:is="fullscreenIcon", :title="$t('Add new kudos')", w="25px", h="25px")
-    .navbar-collapse.collapse.w-100.order-3
-      ul.navbar-nav.ml-auto
-        li.nav-item.mx-2.my-auto(v-if="!isFullscreen")
-          router-link.nav-link(to="/new")
-            button.btn.btn-sm.btn-outline-light(type='button')
-              add-circle-outline-icon(:title="$t('Add new kudos')", w="25px", h="25px")
-              span {{ $t('New Kudo') }}
-        li.nav-item.mx-2.my-auto
-          a.nav-link(href='#', @click="toggleFullscreen")
-            component(:is="fullscreenIcon", :title="$t('Add new Kudo')", w="25px", h="25px")
+            span {{ $t('New Kudo') }}
+      li.nav-item.mx-2.my-auto
+        a.nav-link(href='#', @click="toggleFullscreen")
+          component(:is="fullscreenIcon", :title="$t('Add new Kudo')", w="25px", h="25px")
 </template>
 
 <script>

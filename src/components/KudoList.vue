@@ -51,6 +51,5 @@ export default {
     box-shadow: 0px 0px 20px 5px #d8d8d8;
   }
 }
-
 </style>
 

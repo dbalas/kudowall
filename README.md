@@ -1,5 +1,7 @@
 # KudoWall
 
+<img src="public/logo.svg" width="380"/>
+
 > Virtual KudoWall implementation using VueJS and AWS.
 
 ## Features
