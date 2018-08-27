@@ -8,7 +8,8 @@
 * Fullscreen mode
 * Real-time
 * Offline capabilities
-* i18n ready
+* I18n ready
+* Connected with Slack users
 
 ## Requirements
 * Create an AWS AppSync API.
