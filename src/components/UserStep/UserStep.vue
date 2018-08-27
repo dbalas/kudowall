@@ -71,7 +71,6 @@ export default {
       this.slackUsers = result.members;
       this.loading = false;
     }).catch((err) => {
-      console.error(err);
       this.slackUsers = [];
       this.loading = false;
       this.error = true;

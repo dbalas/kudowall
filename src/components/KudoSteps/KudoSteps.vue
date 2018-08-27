@@ -65,7 +65,6 @@ export default {
         this.$router.push({ name: 'Home' });
         this.$snotify.success(this.$t('Your kudos has been sent successfully.'), this.$t('Congratulations!'));
       }).catch((error) => {
-        console.error(error);
         this.$snotify.error(this.$t('Please contact with admins.'), this.$t('Unexpected error'));
       });
     },
