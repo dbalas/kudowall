@@ -70,7 +70,7 @@ export default {
     slack.users.list().then((result) => {
       this.slackUsers = result.members;
       this.loading = false;
-    }).catch((err) => {
+    }).catch(() => {
       this.slackUsers = [];
       this.loading = false;
       this.error = true;

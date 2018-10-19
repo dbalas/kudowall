@@ -19,7 +19,6 @@ export default {
 @import '../../assets/bootstrap';
 
 .card-text {
-  white-space: pre;
   z-index: 100;
   position: relative;
   margin-top: 4px;

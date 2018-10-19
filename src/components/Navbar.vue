@@ -35,8 +35,8 @@ export default {
     };
   },
   created() {
-    init((isFullscreen) => {
-      this.isFullscreen = isFullscreen;
+    init(() => {
+      this.isFullscreen = !this.isFullscreen;
     });
   },
   destroy() {

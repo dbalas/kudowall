@@ -64,7 +64,7 @@ export default {
         this.swiper.destroy(false, false);
         this.$router.push({ name: 'Home' });
         this.$snotify.success(this.$t('Your kudos has been sent successfully.'), this.$t('Congratulations!'));
-      }).catch((error) => {
+      }).catch(() => {
         this.$snotify.error(this.$t('Please contact with admins.'), this.$t('Unexpected error'));
       });
     },
